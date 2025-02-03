@@ -38,11 +38,11 @@ public class BaseInitData {
         }
 
         // 회원 샘플데이터 생성
-        memberService.join("system", "1234", "시스템");
-        memberService.join("admin", "1234", "관리자");
-        memberService.join("user1", "1234", "유저1");
-        memberService.join("user2", "1234", "유저2");
-        memberService.join("user3", "1234", "유저3");
+        memberService.join("system", "system1234", "시스템");
+        memberService.join("admin", "admin1234", "관리자");
+        memberService.join("user1", "user11234", "유저1");
+        memberService.join("user2", "user21234", "유저2");
+        memberService.join("user3", "user31234", "유저3");
 
     }
 
