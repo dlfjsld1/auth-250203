@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -14,9 +15,14 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     public Member join(String username, String password, String nickname) {
+
+        UUID uuid = UUID.randomUUID();
+        String uuidString = uuid.toString();
+
         Member member = Member.builder()
                 .username(username)
                 .password(password)
+                .apiKey(username)
                 .nickname(nickname)
                 .build();
 
@@ -33,5 +39,9 @@ public class MemberService {
 
     public Optional<Member> findById(long id) {
         return memberRepository.findById(id);
+    }
+
+    public Optional<Member> findByApiKey(String apiKey) {
+        return memberRepository.findByApiKey(apiKey);
     }
 }
