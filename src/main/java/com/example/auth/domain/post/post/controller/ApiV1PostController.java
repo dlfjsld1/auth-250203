@@ -8,6 +8,7 @@ import com.example.auth.domain.post.post.service.PostService;
 import com.example.auth.global.dto.RsData;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.web.bind.annotation.*;
@@ -79,13 +80,21 @@ public class ApiV1PostController {
     }
 
 
-    record WriteReqBody(@NotBlank @Length(min = 3) String title, @NotBlank @Length(min = 3) String content) {
+    record WriteReqBody(
+            @NotBlank
+            @Length(min = 3)
+            String title,
+            @NotBlank
+            @Length(min = 3)
+            String content,
+            @NotNull
+            Long authorId) {
     }
 
     @PostMapping
     public RsData<PostDto> write(@RequestBody @Valid WriteReqBody body) {
 
-        Member actor = memberService.findByUsername("user3").get();
+        Member actor = memberService.findById(body.authorId()).get();
         Post post = postService.write(actor, body.title(), body.content());
 
         return new RsData<>(
