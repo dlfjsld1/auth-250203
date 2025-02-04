@@ -53,8 +53,7 @@ public class ApiV1CommentController {
     @PostMapping
     public RsData<Void> write(
             @PathVariable
-            long pos
-            tId,
+            long postId,
             @RequestBody
             WriteReqBody reqBody
             ) {
