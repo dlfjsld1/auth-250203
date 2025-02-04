@@ -27,7 +27,7 @@ public class Post extends BaseTime {
     @Builder.Default
     private List<Comment> comments = new ArrayList<>();
 
-    public void addComment(Member author, String content) {
+    public Comment addComment(Member author, String content) {
         Comment comment = Comment
                 .builder()
                 .post(this)
@@ -36,6 +36,7 @@ public class Post extends BaseTime {
                 .build();
 
         comments.add(comment);
+        return comment;
     }
 
     public Comment getCommentById(long id) {
