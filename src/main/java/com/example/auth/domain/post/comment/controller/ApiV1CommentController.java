@@ -125,10 +125,7 @@ public class ApiV1CommentController {
         );
 
         Comment comment = post.getCommentById(id);
-
-        if(!actor.isAdmin() && !comment.getAuthor().getId().equals(actor.getId())) {
-            throw new ServiceException("403-1", "자신이 작성한 댓글만 삭제 가능합니다.");
-        }
+        comment.canDelete(actor);
 
         post.deleteComment(comment);
         return new RsData<>(
