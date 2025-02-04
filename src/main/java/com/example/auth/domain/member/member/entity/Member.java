@@ -25,4 +25,8 @@ public class Member extends BaseTime {
     @Column(length = 100)
     private String nickname;
 
+    public boolean isAdmin() {
+        return username.equals("admin");
+    }
+
 }
